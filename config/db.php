@@ -2,8 +2,8 @@
 
 return [
     'class' => yii\db\Connection::class,
-    'dsn' => 'pgsql:host=localhost;port=5432;dbname=crud',
+    'dsn' => 'pgsql:host=localhost;port=5432;dbname=postgres',
     'username' => 'postgres',
-    'password' => 'your_password',
+    'password' => 'thuanvo1302',
     'charset' => 'utf8',
 ];

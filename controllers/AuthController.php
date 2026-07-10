@@ -16,10 +16,10 @@ class AuthController extends Controller
      */
     public function actionLogin(): array
     {
-        $body = Yii::$app->request->bodyParams;
+        $params = Yii::$app->request->getBodyParams();
         $authService = Yii::$container->get(AuthService::class);
         return [
-            $authService->login($body['username'], $body['password']),
+            $authService->login($params),
         ];
     }
 }

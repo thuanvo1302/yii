@@ -2,15 +2,17 @@
 
 namespace app\repositories;
 
-use app\models\User;
+use app\models\Users;
+use Throwable;
+use Yii;
 
 class UserRepository
 {
-    public function findByUserName(string $username): User|string
+    public function findByUserName(array $params): ?Users
     {
-        return 'OK';
-//        return User::find()
-//            ->where(['username' => $username])
-//            ->one();
+        return Users::find()
+            ->where(['username' => $params['username']])
+            ->where(['password_hash' => $params['password']])
+            ->one();
     }
 }

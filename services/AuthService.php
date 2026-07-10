@@ -2,6 +2,7 @@
 
 namespace app\services;
 
+use app\models\Users;
 use app\repositories\UserRepository;
 
 class AuthService
@@ -10,13 +11,10 @@ class AuthService
     {
 
     }
-    public function login(string $username, string $password)
+    public function login(array $params): Users|null
     {
-        $user = $this->userRepository->findByUserName($username);
-        if ($user !== null) {
-            // generate token
-             return 'OK';
-        }
+        $user = $this->userRepository->findByUserName($params);
+        return $user ?? null;
     }
 
     public function generateAccessToken()
