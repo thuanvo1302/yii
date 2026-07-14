@@ -12,7 +12,7 @@ class UserRepository
     {
         return Users::find()
             ->where(['username' => $params['username']])
-            ->where(['password_hash' => $params['password']])
+            ->andWhere(['password_hash' => $params['password']])
             ->one();
     }
 }

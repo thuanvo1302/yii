@@ -27,6 +27,11 @@ $config = [
         '@bower' => '@vendor/bower-asset',
         '@npm' => '@vendor/npm-asset',
     ],
+    'modules' => [
+        'post' => [
+            'class' => 'app\modules\post\Module',
+        ]
+    ],
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
@@ -37,6 +42,7 @@ $config = [
         ],
         'response' => [
             'format' => yii\web\Response::FORMAT_JSON,
+            'class' => app\components\ApiResponse::class
         ],
         'cache' => [
             'class' => FileCache::class,
@@ -70,6 +76,11 @@ $config = [
                 'POST employee' => 'employee/create',
                 'PUT employee/<id:\d+>' => 'employee/update',
                 'DELETE employee/<id:\d+>' => 'employee/delete',
+                ///
+                [
+                    'class' => 'yii\rest\GroupUrlRule',
+                    'prefix' => 'post',
+                ]
             ],
         ],
     ],

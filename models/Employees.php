@@ -15,6 +15,7 @@ class Employees extends ActiveRecord
     {
         return [
             [['fullname','gender','age','phone'], 'required'],
+            [['email'], 'email'],
         ];
     }
 }

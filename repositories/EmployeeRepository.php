@@ -47,7 +47,7 @@ class EmployeeRepository
     {
         $employee = Employees::findOne($id);
 
-        if($employee !== null) {
+        if ($employee !== null) {
             $employee->load($params, '');
         }
 

@@ -6,20 +6,22 @@ use app\services\AuthService;
 use Yii;
 use yii\base\InvalidConfigException;
 use yii\di\NotInstantiableException;
-use yii\rest\Controller;
+use yii\web\UnauthorizedHttpException;
 
-class AuthController extends Controller
+class AuthController extends BaseController
 {
     /**
      * @throws NotInstantiableException
-     * @throws InvalidConfigException
+     * @throws InvalidConfigException|UnauthorizedHttpException
      */
     public function actionLogin(): array
     {
         $params = Yii::$app->request->getBodyParams();
         $authService = Yii::$container->get(AuthService::class);
-        return [
-            $authService->login($params),
-        ];
+        $authInfo = $authService->login($params);
+        if ($authInfo == null) {
+            return [];
+        }
+        return $authInfo;
     }
 }
